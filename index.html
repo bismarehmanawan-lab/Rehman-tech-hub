@@ -3,42 +3,149 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="google-site-verification" content="3zBEkONTFNsp4jXi5By9AJaPSWBrt7GNL-HDsu74ev0" />
-    <title>Rehman Tech Hub | Pro Quiz</title>
-    <link rel="stylesheet" href="style.css">
+            <meta name="google-site-verification" content="3zBEkONTFNsp4jXi5By9AJaPSWBrt7GNL-HDsu74ev0" />
+
+
+    <title>Rehman Tech Hub | Pro Quiz Hub</title>
+    
+    <style>
+        :root { --p: #6366f1; --bg: #0f172a; --card: #1e293b; --txt: #f8fafc; }
+        body { font-family: 'Segoe UI', sans-serif; background: var(--bg); color: var(--txt); display: flex; flex-direction: column; align-items: center; min-height: 100vh; margin: 0; padding: 20px; }
+        
+        /* Ad Unit Placeholder - Ye AdSense approval mein madad karta hai */
+        .ad-placeholder { 
+            width: 100%; max-width: 550px; height: 90px; 
+            background: rgba(255,255,255,0.03); 
+            border: 1px dashed #475569; border-radius: 10px;
+            margin: 15px 0; display: flex; align-items: center; 
+            justify-content: center; color: #64748b; font-size: 0.8rem;
+        }
+
+        .quiz-container { 
+            background: var(--card); width: 100%; max-width: 550px; 
+            padding: 30px; border-radius: 20px; box-shadow: 0 10px 40px rgba(0,0,0,0.4); 
+            position: relative; border: 1px solid rgba(255,255,255,0.1); 
+        }
+
+        h1 { background: linear-gradient(to right, #818cf8, #c084fc); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-size: 2.2rem; text-align: center; margin-bottom: 5px; }
+        #timer { position: absolute; top: 15px; right: 20px; font-weight: bold; color: #fbbf24; font-size: 1.2rem; }
+        .q-text { font-size: 1.3rem; margin: 25px 0; min-height: 70px; line-height: 1.4; }
+        .options { display: grid; gap: 12px; }
+        .opt-btn { background: #334155; color: white; border: 1px solid #475569; padding: 15px; border-radius: 12px; cursor: pointer; transition: 0.3s; text-align: left; font-size: 1rem; }
+        .opt-btn:hover { background: var(--p); transform: translateY(-2px); }
+        
+        .score-box { text-align: center; display: none; }
+        .btn-action { background: var(--p); color: white; border: none; padding: 12px 25px; border-radius: 10px; font-weight: bold; cursor: pointer; margin: 10px; font-size: 1rem; }
+        
+        .info-section { margin-top: 30px; text-align: left; }
+        .info-section h2 { color: var(--p); font-size: 1.4rem; border-bottom: 1px solid #475569; padding-bottom: 5px; }
+        footer { margin-top: auto; padding: 30px; color: #64748b; font-size: 0.85rem; text-align: center; }
+    </style>
 </head>
 <body>
 
+    <div class="ad-placeholder">Advertisement Space (Top)</div>
+
     <h1>Rehman Tech Mastery</h1>
-    <div id="clock">00:00:00</div>
+    <div id="clock" style="color: #94a3b8; margin-bottom: 15px;">00:00:00</div>
 
     <div class="quiz-container" id="game-box">
         <div id="timer">30s</div>
-        <div id="progress">Question 1/15</div>
+        <div id="progress" style="color: #94a3b8; font-size: 0.9rem;">Question 1/15</div>
         <div class="q-text" id="q-txt">Loading...</div>
         <div class="options" id="opt-box"></div>
         
         <div class="score-box" id="result-box">
             <h2>Quiz Completed! 🏁</h2>
-            <p id="final-score">0/150</p>
+            <p id="final-score" style="font-size: 3.5rem; color: #22c55e; font-weight: bold;">0/150</p>
             <p id="feedback"></p>
             <button class="btn-action" onclick="location.reload()">Play Again</button>
+            <button class="btn-action" style="background:#25d366;" onclick="shareOnWhatsApp()">Share Score</button>
         </div>
     </div>
 
+    <div class="ad-placeholder">Advertisement Space (Bottom)</div>
+
     <div class="quiz-container info-section">
-        <h2>About Rehman Digital Hub</h2>
-        <p>Your premier destination for tech learning. We provide high-quality quizzes to help you master programming languages like Python, HTML, and CSS.</p>
-        
-        <h2>Contact Us</h2>
-        <p>Email: support@rehman-digital-hub.netlify.app</p>
-        
-        <h2>Privacy Policy</h2>
-        <p>We value your privacy. We do not collect personal data from our users. This platform is for educational purposes only.</p>
+        <h2>About Rehman Tech Hub</h2>
+        <p>This is a professional platform for beginners to test their coding skills. Our quizzes cover HTML, CSS, JavaScript, and Python.</p>
+        <h2>Privacy & Terms</h2>
+        <p>We respect user privacy and do not collect any personal data. Educational use only.</p>
     </div>
 
-    <footer>© 2026 Rehman Digital Hub | Verified by GSC</footer>
+    <footer>© 2026 Rehman Digital Hub | Certified by GSC</footer>
 
-    <script src="script.js"></script>
+    <script>
+        const questions = [
+            {q: "Which tag is used for the largest heading in HTML?", o: ["<heading>", "<h1>", "<h6>"], a: "<h1>"},
+            {q: "How do you start a for loop in Python?", o: ["for x in y:", "for(x;y;z)", "loop x in y"], a: "for x in y:"},
+            {q: "Which CSS property controls the text size?", o: ["font-style", "text-size", "font-size"], a: "font-size"},
+            {q: "What is the correct extension for a Python file?", o: [".py", ".python", ".pyt"], a: ".py"},
+            {q: "Which HTML attribute is used to define inline styles?", o: ["class", "styles", "style"], a: "style"},
+            {q: "How do you create a function in Python?", o: ["def myFunc():", "function myFunc()", "create myFunc()"], a: "def myFunc():"},
+            {q: "Which CSS property is used to make text bold?", o: ["font-weight", "text-bold", "font-style"], a: "font-weight"},
+            {q: "What does HTML stand for?", o: ["Hyperlinks", "Hyper Text Markup Language", "Home Tool"], a: "Hyper Text Markup Language"},
+            {q: "Which character is used to indicate a comment in Python?", o: ["//", "#", "/*"], a: "#"},
+            {q: "How do you select an id 'demo' in CSS?", o: [".demo", "demo", "#demo"], a: "#demo"},
+            {q: "In HTML, which tag is used for a line break?", o: ["<br>", "<lb>", "<break>"], a: "<br>"},
+            {q: "Which Python data type is for lists?", o: ["List", "String", "Float"], a: "List"},
+            {q: "Which CSS property changes font?", o: ["font-family", "font-style", "text-font"], a: "font-family"},
+            {q: "How to insert an image in HTML?", o: ["<img src='url'>", "<image href='url'>", "<img href='url'>"], a: "<img src='url'>"},
+            {q: "Which Python operator is for power?", o: ["^", "**", "//"], a: "**"}
+        ];
+
+        let idx = 0, score = 0, timeLeft = 30, timer;
+
+        function startTimer() {
+            clearInterval(timer);
+            timeLeft = 30;
+            document.getElementById('timer').innerText = timeLeft + "s";
+            timer = setInterval(() => {
+                timeLeft--;
+                document.getElementById('timer').innerText = timeLeft + "s";
+                if(timeLeft <= 0) { idx++; loadQ(); }
+            }, 1000);
+        }
+
+        function loadQ() {
+            if(idx >= questions.length) return showResult();
+            startTimer();
+            const q = questions[idx];
+            document.getElementById('progress').innerText = `Question ${idx+1}/${questions.length}`;
+            document.getElementById('q-txt').innerText = q.q;
+            const box = document.getElementById('opt-box');
+            box.innerHTML = '';
+            q.o.forEach(opt => {
+                const b = document.createElement('button');
+                b.className = 'opt-btn';
+                b.innerText = opt;
+                b.onclick = () => {
+                    if(opt === questions[idx].a) score += 10;
+                    idx++;
+                    loadQ();
+                };
+                box.appendChild(b);
+            });
+        }
+
+        function showResult() {
+            clearInterval(timer);
+            document.getElementById('timer').style.display = 'none';
+            document.getElementById('q-txt').style.display = 'none';
+            document.getElementById('opt-box').style.display = 'none';
+            document.getElementById('progress').style.display = 'none';
+            document.getElementById('result-box').style.display = 'block';
+            document.getElementById('final-score').innerText = `${score}/150`;
+            document.getElementById('feedback').innerText = score >= 120 ? "Tech Pro! 🚀" : "Keep Learning! 💪";
+        }
+
+        function shareOnWhatsApp() {
+            const text = `I scored ${score}/150 on Rehman Tech Mastery Quiz! 🚀 Can you beat me? Check it out here: ${window.location.href}`;
+            window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank');
+        }
+
+        setInterval(() => { document.getElementById('clock').innerText = new Date().toLocaleTimeString(); }, 1000);
+        window.onload = loadQ;
+    </script>
 </body>
 </html>
