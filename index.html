@@ -3,126 +3,182 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="google-site-verification" content="kgq6i9-nchzQ5ZAt3HHe22ZoX_JSqZyhXFnePaQ9TT" />
-    <title>Rehman Tech Hub | Pro Quiz</title>
+    <meta name="google-site-verification" content=kgq6i9-nchzQ5ZAt3HHe22Zo"X_JSqZygHXFnePaQ9TT" />
+    
+    <title>Ultimate IQ Hub | Rehman Tech Hub</title>
+    
     <style>
-        :root { --p: #6366f1; --bg: #0f172a; --card: #1e293b; --txt: #f8fafc; }
-        body { font-family: 'Segoe UI', sans-serif; background: var(--bg); color: var(--txt); display: flex; flex-direction: column; align-items: center; min-height: 100vh; margin: 0; padding: 20px; }
-        .quiz-container { background: var(--card); width: 100%; max-width: 550px; padding: 30px; border-radius: 20px; box-shadow: 0 10px 40px rgba(0,0,0,0.4); margin-top: 20px; position: relative; border: 1px solid rgba(255,255,255,0.1); }
-        #timer { position: absolute; top: 15px; right: 20px; font-weight: bold; color: #fbbf24; font-size: 1.2rem; }
-        h1 { background: linear-gradient(to right, #818cf8, #c084fc); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-size: 2rem; margin-bottom: 5px; text-align: center; }
-        .q-text { font-size: 1.3rem; margin: 25px 0; min-height: 70px; line-height: 1.4; }
-        .options { display: grid; gap: 12px; }
-        .opt-btn { background: #334155; color: white; border: 1px solid #475569; padding: 15px; border-radius: 12px; cursor: pointer; transition: 0.2s; text-align: left; font-size: 1rem; }
-        .opt-btn:hover { background: var(--p); transform: translateY(-2px); }
-        .score-box { text-align: center; display: none; padding: 20px; }
-        .btn-action { background: var(--p); color: white; border: none; padding: 12px 30px; border-radius: 10px; font-weight: bold; cursor: pointer; margin-top: 20px; font-size: 1.1rem; }
-        .info-section { margin-top: 40px; text-align: left; }
-        .info-section h2 { color: var(--p); border-bottom: 1px solid #475569; padding-bottom: 10px; font-size: 1.5rem; margin-top: 30px; }
-        .info-section p { color: #94a3b8; line-height: 1.6; margin-bottom: 15px; }
-        footer { margin-top: auto; padding: 30px; color: #64748b; font-size: 0.85rem; text-align: center; }
+        :root { --primary: #4f46e5; --bg: #f3f4f6; --white: #ffffff; }
+        
+        body { font-family: 'Inter', sans-serif; background-color: var(--bg); margin: 0; display: flex; flex-direction: column; min-height: 100vh; }
+        
+        /* Modern Navbar with Buttons */
+        nav { background: var(--white); padding: 12px 5%; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+        .logo { font-size: 1.4rem; font-weight: 800; color: var(--primary); text-decoration: none; }
+        
+        .nav-buttons { display: flex; gap: 10px; }
+        .nav-btn { 
+            text-decoration: none; 
+            padding: 8px 15px; 
+            border-radius: 8px; 
+            font-size: 0.85rem; 
+            font-weight: 600; 
+            transition: 0.3s;
+        }
+        .btn-policy { background: #e0e7ff; color: var(--primary); }
+        .btn-contact { background: #f1f5f9; color: #475569; border: 1px solid #e2e8f0; }
+        .nav-btn:hover { transform: translateY(-2px); opacity: 0.9; }
+
+        /* Main Quiz Box */
+        .main-content { flex: 1; display: flex; justify-content: center; align-items: center; padding: 20px; }
+        .quiz-container { background: var(--white); width: 100%; max-width: 650px; border-radius: 20px; padding: 35px; box-shadow: 0 15px 35px rgba(0,0,0,0.08); text-align: center; }
+        
+        .question { font-size: 1.25rem; font-weight: 600; color: #1e293b; margin-bottom: 25px; min-height: 60px; }
+        .options-grid { display: grid; grid-template-columns: 1fr; gap: 12px; }
+        
+        .option-btn { background: #fff; border: 2px solid #f1f5f9; padding: 15px; border-radius: 12px; cursor: pointer; transition: 0.2s; font-size: 1rem; text-align: left; font-weight: 500; }
+        .option-btn:hover { border-color: var(--primary); background: #f5f3ff; }
+        
+        .progress-bar { width: 100%; background: #e5e7eb; height: 8px; border-radius: 10px; margin-bottom: 25px; overflow: hidden; }
+        #progress-fill { height: 100%; background: var(--primary); width: 0%; transition: 0.4s; }
+
+        .hidden { display: none; }
+        .share-whatsapp { background: #25D366; color: white; padding: 15px 25px; border-radius: 10px; font-weight: bold; text-decoration: none; display: inline-block; margin-top: 20px; }
+
+        /* Footer */
+        footer { background: var(--white); text-align: center; padding: 40px 20px; border-top: 1px solid #e5e7eb; margin-top: auto; }
+        .footer-links { margin-bottom: 15px; }
+        .footer-links a { color: #64748b; text-decoration: none; margin: 0 10px; font-size: 0.9rem; }
     </style>
 </head>
 <body>
 
-    <h1>Rehman Tech Mastery</h1>
-    <div id="clock" style="color: #94a3b8; font-weight: 500; letter-spacing: 1px;">00:00:00</div>
+<nav>
+    <a href="#" class="logo">Rehman Tech Hub</a>
+    <div class="nav-buttons">
+        <a href="#" class="nav-btn btn-contact">Contact Us</a>
+        <a href="#" class="nav-btn btn-policy">Privacy Policy</a>
+    </div>
+</nav>
 
-    <div class="quiz-container" id="game-box">
-        <div id="timer">30s</div>
-        <div id="progress" style="color: #94a3b8; font-size: 0.9rem; font-weight: 600;">Question 1/15</div>
-        <div class="q-text" id="q-txt">Loading...</div>
-        <div class="options" id="opt-box"></div>
-        
-        <div class="score-box" id="result-box">
-            <h2>Quiz Completed! 🏁</h2>
-            <p id="final-score" style="font-size: 3rem; color: #22c55e; font-weight: bold;">0/150</p>
-            <p id="feedback"></p>
-            <button class="btn-action" onclick="location.reload()">Play Again</button>
+<div class="main-content">
+    <div class="quiz-container">
+        <div id="quiz-ui">
+            <div class="progress-bar"><div id="progress-fill"></div></div>
+            <div id="question-text" class="question">Loading Awesome Questions...</div>
+            <div id="options-container" class="options-grid"></div>
+        </div>
+
+        <div id="result-box" class="hidden">
+            <h2>Quiz Results! 🏆</h2>
+            <p style="font-size: 1.8rem; font-weight: 800; color: var(--primary);">Score: <span id="final-score">0</span> / 10</p>
+            <p id="rank-text" style="font-weight: 600; color: #64748b;"></p>
+            <button onclick="location.reload()" class="option-btn" style="text-align:center; background: var(--primary); color:white; width: 100%;">Retake Quiz</button>
+            <br>
+            <a id="whatsapp-link" href="#" class="share-whatsapp">Share on WhatsApp</a>
         </div>
     </div>
+</div>
 
-    <div class="quiz-container info-section">
-        <h2>About Rehman Digital Hub</h2>
-        <p>Your premier destination for tech learning.</p>
-        <h2>Contact Us</h2>
-        <p>support@rehman-digital-hub.netlify.app</p>
-        <h2>Privacy Policy</h2>
-        <p>We value your privacy and do not collect personal data.</p>
+<footer>
+    <div class="footer-links">
+        <a href="#">About</a> | 
+        <a href="#">Privacy</a> | 
+        <a href="#">Terms</a> | 
+        <a href="#">Support</a>
     </div>
+    <p>&copy; 2026 <b>Rehman Tech Hub</b>. All rights reserved.</p>
+</footer>
 
-    <footer>© 2025 Rehman Digital Hub | Verified by GSC</footer>
+<script>
+    const allQuestions = [
+        // TECH & INTERNET
+        { q: "What does 'WWW' stand for?", a: ["World Wide Web", "Web World Wide", "Wide World Web"], c: 0 },
+        { q: "Who is the father of Computers?", a: ["Bill Gates", "Charles Babbage", "Steve Jobs"], c: 1 },
+        { q: "Which company owns Android?", a: ["Apple", "Google", "Nokia"], c: 1 },
+        { q: "What is the full form of PDF?", a: ["Personal Doc", "Portable Document Format", "Printable File"], c: 1 },
+        { q: "Main brain of a computer?", a: ["RAM", "CPU", "Hard Disk"], c: 1 },
+        { q: "Who created Facebook?", a: ["Mark Zuckerberg", "Jack Dorsey", "Elon Musk"], c: 0 },
+        { q: "What is a VPN?", a: ["Virtual Private Network", "Very Personal Net", "Voice Phone Net"], c: 0 },
+        { q: "Smallest unit of data?", a: ["Byte", "Bit", "Kilobyte"], c: 1 },
+        { q: "First iPhone release year?", a: ["2005", "2007", "2010"], c: 1 },
+        { q: "Standard language for Web?", a: ["Java", "HTML", "C++"], c: 1 },
+        { q: "What is RAM?", a: ["Read Access", "Random Access Memory", "Real Memory"], c: 1 },
+        { q: "Who co-founded Microsoft?", a: ["Steve Jobs", "Bill Gates", "Jeff Bezos"], c: 1 },
+        { q: "Full form of HTTP?", a: ["Hypertext Transfer Protocol", "High Text Transfer", "Hyper Tool"], c: 0 },
+        { q: "Which is a Search Engine?", a: ["Chrome", "Google", "Windows"], c: 1 },
+        { q: "1024 GB is equal to?", a: ["1 MB", "1 TB", "1 PB"], c: 1 },
+        // AI & FUTURE
+        { q: "What does AI stand for?", a: ["Actual Intel", "Artificial Intelligence", "Auto Info"], c: 1 },
+        { q: "Who developed ChatGPT?", a: ["Google", "OpenAI", "Meta"], c: 1 },
+        { q: "Google's AI name?", a: ["Alexa", "Siri", "Gemini"], c: 2 },
+        { q: "First Robot Citizen of a country?", a: ["Sophia", "Alexa", "Siri"], c: 0 },
+        { q: "Tesla is famous for?", a: ["Mobiles", "Electric Cars", "Laptops"], c: 1 },
+        { q: "Blockchain is used for?", a: ["Music", "Crypto/Security", "Gaming"], c: 1 },
+        { q: "A virtual reality world name?", a: ["Metaverse", "DigiWorld", "UniVerse"], c: 0 },
+        { q: "World's first Cryptocurrency?", a: ["Ethereum", "Bitcoin", "Doge"], c: 1 },
+        { q: "Amazon's virtual assistant?", a: ["Siri", "Alexa", "Cortana"], c: 1 },
+        { q: "What does IOT stand for?", a: ["Internet of Things", "Input Output Tech", "In Out Task"], c: 0 },
+        // IQ & LOGIC
+        { q: "What has keys but no locks?", a: ["Door", "Keyboard", "Piano"], c: 1 },
+        { q: "What gets wetter as it dries?", a: ["Sponge", "Towel", "Cloud"], c: 1 },
+        { q: "What has one eye but can't see?", a: ["Needle", "Bat", "Storm"], c: 0 },
+        { q: "What has a thumb but no life?", a: ["Robot", "Glove", "Human"], c: 1 },
+        { q: "Which word is spelled 'Incorrectly'?", a: ["Wrongly", "Incorrectly", "Incorectly"], c: 1 },
+        { q: "What has a neck but no head?", a: ["Shirt", "Bottle", "Guitar"], c: 1 },
+        { q: "What belongs to you but others use it?", a: ["Money", "Name", "Car"], c: 1 },
+        { q: "What can travel in a corner?", a: ["Stamp", "Bird", "Plane"], c: 0 },
+        { q: "Full of holes but holds water?", a: ["Net", "Sponge", "Bucket"], c: 1 },
+        { q: "Building with the most stories?", a: ["Burj Khalifa", "Library", "Hotel"], c: 1 },
+        { q: "What goes up but never down?", a: ["Smoke", "Age", "Balloon"], c: 1 },
+        { q: "Easy to get into, hard to get out?", a: ["Bed", "Trouble", "Car"], c: 1 },
+        { q: "Must be broken before used?", a: ["Egg", "Mirror", "Phone"], c: 0 },
+        { q: "Always in front but not seen?", a: ["Future", "Air", "Glass"], c: 0 },
+        { q: "Has legs but cannot walk?", a: ["Table", "Person", "Dog"], c: 0 },
+        { q: "Many teeth but cannot bite?", a: ["Saw", "Comb", "Zipper"], c: 1 },
+        { q: "Starts with P, ends with E, has thousands of letters?", a: ["Envelope", "Post Office", "Page"], c: 1 },
+        { q: "If 1=5, 2=10, 3=15, then 5=?", a: ["25", "1", "20"], c: 1 },
+        { q: "Which month has 28 days?", a: ["February", "All of them", "Only one"], c: 1 },
+        { q: "What has a heart that doesn't beat?", a: ["Artichoke", "Robot", "Stone"], c: 0 },
+        { q: "What can you catch but not throw?", a: ["Ball", "Cold", "Fish"], c: 1 },
+        { q: "Black when clean, white when dirty?", a: ["Paper", "Blackboard", "Car"], c: 1 },
+        { q: "Friday comes before Thursday in?", a: ["Dictionary", "Mars", "Dreams"], c: 0 },
+        { q: "What has hands but cannot clap?", a: ["Clock", "Person", "Tree"], c: 0 },
+        { q: "What has a head and tail but no body?", a: ["Snake", "Coin", "Ghost"], c: 1 }
+    ];
 
-    <script>
-        const questions = [
-            {q: "Which tag is used for the largest heading in HTML?", o: ["<heading>", "<h1>", "<h6>"], a: "<h1>"},
-            {q: "How do you start a for loop in Python?", o: ["for x in y:", "for(x;y;z)", "loop x in y"], a: "for x in y:"},
-            {q: "Which CSS property controls the text size?", o: ["font-style", "text-size", "font-size"], a: "font-size"},
-            {q: "What is the correct extension for a Python file?", o: [".py", ".python", ".pyt"], a: ".py"},
-            {q: "Which HTML attribute is used to define inline styles?", o: ["class", "styles", "style"], a: "style"},
-            {q: "How do you create a function in Python?", o: ["def myFunc():", "function myFunc()", "create myFunc()"], a: "def myFunc():"},
-            {q: "Which CSS property is used to make text bold?", o: ["font-weight", "text-bold", "font-style"], a: "font-weight"},
-            {q: "What does HTML stand for?", o: ["Hyperlinks Markup Language", "Hyper Text Markup Language", "Home Tool Markup Language"], a: "Hyper Text Markup Language"},
-            {q: "Which character is used to indicate a comment in Python?", o: ["//", "#", "/*"], a: "#"},
-            {q: "How do you select an element with id 'demo' in CSS?", o: [".demo", "demo", "#demo"], a: "#demo"},
-            {q: "In HTML, which tag is used for a line break?", o: ["<br>", "<lb>", "<break>"], a: "<br>"},
-            {q: "Which Python data type is used to store multiple items in a single variable?", o: ["List", "String", "Float"], a: "List"},
-            {q: "Which CSS property is used to change the font of an element?", o: ["font-family", "font-style", "text-font"], a: "font-family"},
-            {q: "How do you insert an image in HTML?", o: ["<img src='url'>", "<image href='url'>", "<img href='url'>"], a: "<img src='url'>"},
-            {q: "Which Python operator is used for power (exponentiation)?", o: ["^", "**", "//"], a: "**"}
-        ];
+    let selectedQuestions = allQuestions.sort(() => 0.5 - Math.random()).slice(0, 10);
+    let currentIdx = 0, score = 0;
 
-        let idx = 0, score = 0, timeLeft = 30, timer;
+    function loadQuestion() {
+        if (currentIdx >= selectedQuestions.length) return showResults();
+        const qData = selectedQuestions[currentIdx];
+        document.getElementById('question-text').innerText = (currentIdx + 1) + ". " + qData.q;
+        document.getElementById('progress-fill').style.width = ((currentIdx / 10) * 100) + "%";
+        const optionsDiv = document.getElementById('options-container');
+        optionsDiv.innerHTML = "";
+        qData.a.forEach((opt, i) => {
+            const btn = document.createElement('button');
+            btn.className = "option-btn";
+            btn.innerText = opt;
+            btn.onclick = () => { if(i === qData.c) score++; currentIdx++; loadQuestion(); };
+            optionsDiv.appendChild(btn);
+        });
+    }
 
-        function startTimer() {
-            clearInterval(timer);
-            timeLeft = 30;
-            document.getElementById('timer').innerText = timeLeft + "s";
-            timer = setInterval(() => {
-                timeLeft--;
-                document.getElementById('timer').innerText = timeLeft + "s";
-                if(timeLeft <= 0) { idx++; loadQ(); }
-            }, 1000);
-        }
-
-        function loadQ() {
-            if(idx >= questions.length) return showResult();
-            startTimer();
-            const q = questions[idx];
-            document.getElementById('progress').innerText = `Question ${idx+1}/${questions.length}`;
-            document.getElementById('q-txt').innerText = q.q;
-            const box = document.getElementById('opt-box');
-            box.innerHTML = '';
-            q.o.forEach(opt => {
-                const b = document.createElement('button');
-                b.className = 'opt-btn';
-                b.innerText = opt;
-                b.onclick = () => check(opt);
-                box.appendChild(b);
-            });
-        }
-
-        function check(sel) {
-            if(sel === questions[idx].a) score += 10;
-            idx++;
-            loadQ();
-        }
-
-        function showResult() {
-            clearInterval(timer);
-            document.getElementById('timer').style.display = 'none';
-            document.getElementById('q-txt').style.display = 'none';
-            document.getElementById('opt-box').style.display = 'none';
-            document.getElementById('progress').style.display = 'none';
-            document.getElementById('result-box').style.display = 'block';
-            document.getElementById('final-score').innerText = `${score}/150`;
-            document.getElementById('feedback').innerText = score >= 120 ? "Tech Pro! 🚀" : "Keep Learning! 💪";
-        }
-
-        setInterval(() => { document.getElementById('clock').innerText = new Date().toLocaleTimeString(); }, 1000);
+    function showResults() {
+        document.getElementById('quiz-ui').classList.add('hidden');
+        document.getElementById('result-box').classList.remove('hidden');
+        document.getElementById('final-score').innerText = score;
         
-        // Is line par tawajju dein, ye quiz shuru karti hai
-        window.onload = loadQ; 
-    </script>
+        let rank = score > 7 ? "Genius! 🧠" : score > 4 ? "Smart! 👍" : "Try Again! 😅";
+        document.getElementById('rank-text').innerText = rank;
+        
+        let msg = `🔥 I scored ${score}/10 on Rehman Tech Hub IQ Quiz! Rank: ${rank}. Can you beat me? Link: ${window.location.href}`;
+        document.getElementById('whatsapp-link').href = "https://api.whatsapp.com/send?text=" + encodeURIComponent(msg);
+    }
+    loadQuestion();
+</script>
+
 </body>
 </html>
