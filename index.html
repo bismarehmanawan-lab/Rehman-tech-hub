@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="google-site-verification" content=kgq6i9-nchzQ5ZAt3HHe22Zo"X_JSqZygHXFnePaQ9TT" />
-    <title>Rehman Tech Hub | Ultimate Brain Suite</title>
+    <meta name="google-site-verification" content=kgq6i9-nchzQ5ZAt3HHe22Zo"X_JSqZygHXFnePaQ9TT" />    
+    <title>Rehman Tech Hub | Ultimate Neural Arena</title>
+    
     <style>
         :root { 
             --primary: #8b5cf6; --secondary: #d946ef; --bg-dark: #0f172a; 
@@ -27,37 +28,55 @@
         .logo { font-size: 1.5rem; font-weight: 800; text-decoration: none; color: #fff; }
         .logo span { color: var(--primary); }
         .nav-btns { display: flex; gap: 10px; }
-        .n-btn { background: none; border: 1px solid var(--primary); color: #fff; padding: 6px 12px; border-radius: 8px; cursor: pointer; font-size: 0.8rem; }
+        .n-btn { background: none; border: 1px solid var(--primary); color: #fff; padding: 6px 12px; border-radius: 8px; cursor: pointer; font-size: 0.8rem; transition: 0.3s; }
+        .n-btn:hover { background: var(--primary); }
 
         /* Screens */
-        .screen { display: none; min-height: 100vh; flex-direction: column; align-items: center; justify-content: center; padding: 100px 20px 40px; text-align: center; }
-        .active-screen { display: flex; }
+        .screen { display: none; min-height: 100vh; flex-direction: column; align-items: center; justify-content: center; padding: 120px 20px 60px; text-align: center; box-sizing: border-box; }
+        .active-screen { display: flex; animation: fadeIn 0.5s ease-in; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-        .container { background: var(--card-bg); width: 100%; max-width: 500px; padding: 40px; border-radius: 30px; box-shadow: 0 20px 50px rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.05); }
+        /* Welcome Screen Elements */
+        .brain-icon { font-size: 5rem; margin-bottom: 20px; animation: pulse 2s infinite; }
+        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.1); text-shadow: 0 0 20px var(--primary); } 100% { transform: scale(1); } }
+        
+        .hero-title { font-size: clamp(2.5rem, 8vw, 4.5rem); font-weight: 900; margin: 0; background: linear-gradient(to right, #fff, var(--secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .stats-bar { display: flex; gap: 30px; margin: 30px 0; color: #94a3b8; font-weight: bold; }
+        .stat-item span { color: var(--primary); display: block; font-size: 1.5rem; }
+
+        .feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; width: 100%; max-width: 800px; margin-bottom: 40px; }
+        .f-card { background: rgba(255,255,255,0.03); padding: 15px; border-radius: 15px; border: 1px solid rgba(255,255,255,0.05); }
+        .f-card i { display: block; font-size: 1.5rem; margin-bottom: 5px; }
+
+        /* Common Container */
+        .container { background: var(--card-bg); width: 100%; max-width: 500px; padding: 40px; border-radius: 35px; box-shadow: 0 30px 60px rgba(0,0,0,0.6); border: 1px solid rgba(255,255,255,0.05); }
 
         /* Buttons */
-        .main-btn { background: linear-gradient(45deg, var(--primary), var(--secondary)); color: white; border: none; padding: 15px 40px; border-radius: 50px; font-size: 1.1rem; font-weight: bold; cursor: pointer; transition: 0.3s; margin: 10px; text-transform: uppercase; }
-        .main-btn:hover { transform: scale(1.05); box-shadow: 0 0 20px rgba(139, 92, 246, 0.4); }
+        .main-btn { background: linear-gradient(45deg, var(--primary), var(--secondary)); color: white; border: none; padding: 16px 45px; border-radius: 50px; font-size: 1rem; font-weight: 800; cursor: pointer; transition: 0.3s; margin: 10px; text-transform: uppercase; letter-spacing: 1px; }
+        .main-btn:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(139, 92, 246, 0.4); }
 
         /* Quiz UI */
-        .timer-bar { font-size: 1.8rem; font-weight: 800; color: var(--secondary); margin-bottom: 20px; }
-        .q-text { font-size: 1.3rem; margin-bottom: 25px; min-height: 60px; }
-        .opt-btn { background: rgba(255,255,255,0.05); border: 1px solid #334155; color: white; padding: 15px; width: 100%; border-radius: 12px; margin-bottom: 10px; cursor: pointer; text-align: left; transition: 0.2s; }
-        
+        .timer-circle { width: 70px; height: 70px; border-radius: 50%; border: 4px solid var(--primary); display: flex; align-items: center; justify-content: center; margin: 0 auto 25px; font-weight: 900; font-size: 1.5rem; color: var(--secondary); background: rgba(0,0,0,0.2); }
+        .q-text { font-size: 1.3rem; font-weight: 700; margin-bottom: 30px; min-height: 70px; line-height: 1.4; }
+        .opt-btn { background: rgba(255,255,255,0.03); border: 1px solid #334155; color: #cbd5e1; padding: 16px; width: 100%; border-radius: 15px; margin-bottom: 12px; cursor: pointer; text-align: left; font-size: 1rem; transition: 0.3s; }
+        .opt-btn:hover { transform: translateX(5px); border-color: var(--primary); }
+
         /* Game UI */
-        #game-number { font-size: 4rem; font-weight: 900; color: var(--primary); margin: 20px 0; letter-spacing: 5px; }
-        .game-input { background: #0f172a; border: 2px solid var(--primary); color: white; padding: 12px; border-radius: 10px; font-size: 1.5rem; width: 80%; text-align: center; margin-bottom: 20px; outline: none; }
+        #game-number { font-size: 4.5rem; font-weight: 900; color: var(--primary); margin: 25px 0; letter-spacing: 8px; text-shadow: 0 0 15px var(--primary); }
+        .game-input { background: #0f172a; border: 2px solid var(--primary); color: white; padding: 15px; border-radius: 15px; font-size: 1.8rem; width: 85%; text-align: center; margin-bottom: 25px; outline: none; }
 
         /* Results & Social */
-        .share-box { display: flex; flex-direction: column; gap: 10px; margin-top: 20px; }
-        .s-btn { padding: 12px; border-radius: 10px; text-decoration: none; color: white; font-weight: bold; display: flex; align-items: center; justify-content: center; gap: 10px; }
+        .share-box { display: flex; flex-direction: column; gap: 12px; margin-top: 30px; }
+        .s-btn { padding: 14px; border-radius: 15px; text-decoration: none; color: white; font-weight: bold; display: flex; align-items: center; justify-content: center; gap: 10px; transition: 0.3s; }
         .wa { background: var(--wa); } .fb { background: var(--fb); } .ig { background: var(--ig); }
+        .s-btn:hover { filter: brightness(1.1); transform: scale(1.02); }
 
         /* Modal */
-        .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); backdrop-filter: blur(5px); }
-        .modal-content { background: var(--card-bg); margin: 20% auto; padding: 30px; border-radius: 20px; width: 80%; max-width: 400px; text-align: center; }
+        .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); backdrop-filter: blur(10px); }
+        .modal-content { background: var(--card-bg); margin: 15% auto; padding: 40px; border-radius: 30px; width: 85%; max-width: 450px; text-align: center; border: 1px solid var(--primary); }
 
-        footer { padding: 20px; color: #475569; font-size: 0.8rem; text-align: center; }
+        .hidden { display: none; }
+        footer { padding: 30px; color: #475569; font-size: 0.85rem; text-align: center; }
     </style>
 </head>
 <body>
@@ -71,109 +90,124 @@
 </nav>
 
 <div id="welcome-screen" class="screen active-screen">
-    <h1>Welcome to Brain Arena</h1>
-    <p>Test your IQ or challenge your memory in the Arena.</p>
-    <div style="margin-top: 30px;">
-        <button class="main-btn" onclick="startQuiz()">Start IQ Quiz</button>
-        <button class="main-btn" onclick="startGame()">Start Mind Game</button>
+    <div class="brain-icon">🧠</div>
+    <h1 class="hero-title">Neural Simulation</h1>
+    <p style="font-size: 1.2rem; color: #94a3b8; max-width: 600px;">Unlock your intellectual potential. Challenge your logic and memory in the ultimate cognitive arena.</p>
+    
+    <div class="stats-bar">
+        <div class="stat-item"><span>1,420+</span>Players</div>
+        <div class="stat-item"><span>50+</span>Levels</div>
+        <div class="stat-item"><span>98%</span>IQ Accuracy</div>
+    </div>
+
+    <div class="feature-grid">
+        <div class="f-card"><i>⚡</i>Quick Logic</div>
+        <div class="f-card"><i>🛡️</i>Hard Mode</div>
+        <div class="f-card"><i>📊</i>Live Scoring</div>
+        <div class="f-card"><i>🌍</i>Global Share</div>
+    </div>
+
+    <div>
+        <button class="main-btn" onclick="startQuiz()">Enter IQ Test</button>
+        <button class="main-btn" onclick="startGame()">Enter Memory Arena</button>
     </div>
 </div>
 
 <div id="quiz-screen" class="screen">
     <div class="container">
-        <div class="timer-bar" id="q-timer">15</div>
-        <div class="q-text" id="q-text">Loading Question...</div>
+        <div class="timer-circle" id="q-timer">15</div>
+        <div class="q-text" id="q-text">Initializing database...</div>
         <div id="options-box"></div>
     </div>
 </div>
 
 <div id="game-screen" class="screen">
     <div class="container">
-        <div class="timer-bar" id="g-timer">Ready?</div>
-        <h2 id="g-msg">Memorize the Number!</h2>
+        <div class="timer-circle" id="g-timer" style="border-color: var(--secondary);">GO</div>
+        <h2 id="g-msg" style="margin:0;">Memorize the Sequence!</h2>
         <div id="game-number"></div>
         <div id="game-input-area" class="hidden">
             <input type="number" id="user-input" class="game-input" placeholder="Enter number...">
             <br>
-            <button class="main-btn" onclick="checkGameAns()">Submit</button>
+            <button class="main-btn" onclick="checkGameAns()">Validate Data</button>
         </div>
     </div>
 </div>
 
 <div id="result-screen" class="screen">
     <div class="container">
-        <h2>Performance Report</h2>
-        <p id="res-msg">Your Score:</p>
-        <h1 id="final-score" style="font-size: 4rem; color: var(--secondary);">0</h1>
+        <h2 style="margin-top:0;">Assessment Complete</h2>
+        <p id="res-msg" style="color: #94a3b8;">Final Intellectual Index:</p>
+        <h1 id="final-score" style="font-size: 5rem; color: var(--secondary); margin: 10px 0;">0</h1>
+        
         <div class="share-box">
-            <a href="#" id="wa-share" class="s-btn wa" target="_blank">Share on WhatsApp</a>
-            <a href="#" id="fb-share" class="s-btn fb" target="_blank">Share on Facebook</a>
-            <a href="#" class="s-btn ig" onclick="alert('Take a screenshot and share on Instagram!')">Instagram Story</a>
+            <a href="#" id="wa-share" class="s-btn wa" target="_blank">Challenge on WhatsApp</a>
+            <a href="#" id="fb-share" class="s-btn fb" target="_blank">Post to Facebook</a>
+            <button class="s-btn ig" onclick="alert('Take a screenshot and tag @RehmanTechHub in your story!')">Share on Instagram</button>
         </div>
-        <button class="n-btn" style="margin-top: 20px;" onclick="location.reload()">Back to Menu</button>
+        <button class="n-btn" style="margin-top: 30px; width:100%; padding:12px;" onclick="location.reload()">Return to Terminal</button>
     </div>
 </div>
 
-<div id="p-modal" class="modal"><div class="modal-content"><h3>Privacy Policy</h3><p>We respect your privacy. No personal data is stored.</p><button class="n-btn" onclick="closeModal()">Close</button></div></div>
-<div id="c-modal" class="modal"><div class="modal-content"><h3>Contact Us</h3><p>Email: support@rehmantechhub.com</p><button class="n-btn" onclick="closeModal()">Close</button></div></div>
+<div id="p-modal" class="modal"><div class="modal-content"><h2>Privacy Protocol</h2><p>No user data is harvested. All cognitive simulations are processed on-device.</p><button class="main-btn" onclick="closeModal()">Close</button></div></div>
+<div id="c-modal" class="modal"><div class="modal-content"><h2>Contact Support</h2><p>Transmission: support@rehmantechhub.com<br>Response: 24h Window</p><button class="main-btn" onclick="closeModal()">Close</button></div></div>
 
 <script>
     const questions = [
         { q: "What does 'WWW' stand for?", a: ["World Wide Web", "Web World Wide", "Wide World Web"], c: 0 },
-        { q: "Brain of computer?", a: ["RAM", "CPU", "Hard Disk"], c: 1 },
-        { q: "Who owns Android?", a: ["Apple", "Google", "Nokia"], c: 1 },
-        { q: "Full form of PDF?", a: ["Portable Document Format", "Personal Doc", "Printable File"], c: 0 },
-        { q: "First iPhone year?", a: ["2005", "2007", "2010"], c: 1 },
+        { q: "Which part is the 'Brain' of a computer?", a: ["RAM", "CPU", "Hard Disk"], c: 1 },
+        { q: "Android is owned by which company?", a: ["Apple", "Google", "Microsoft"], c: 1 },
+        { q: "In what year was the first iPhone released?", a: ["2005", "2007", "2010"], c: 1 },
+        { q: "What is the full form of PDF?", a: ["Portable Document Format", "Personal Doc", "Printable Data"], c: 0 },
+        { q: "Who founded Facebook?", a: ["Elon Musk", "Mark Zuckerberg"], c: 1 },
+        { q: "ChatGPT was created by?", a: ["Google", "OpenAI", "Meta"], c: 1 },
         { q: "1024 GB is equal to?", a: ["1 MB", "1 TB", "1 PB"], c: 1 },
-        { q: "Most used search engine?", a: ["Bing", "Google", "Yahoo"], c: 1 },
-        { q: "What has keys but no locks?", a: ["Door", "Piano", "Map"], c: 1 },
-        { q: "What gets wetter as it dries?", a: ["Cloud", "Towel", "Sponge"], c: 1 },
-        { q: "What has a neck but no head?", a: ["Bottle", "Shirt", "Guitar"], c: 0 },
-        { q: "What has hands but cannot clap?", a: ["Clock", "Tree", "Human"], c: 0 },
-        { q: "Founder of Facebook?", a: ["Elon Musk", "Mark Zuckerberg"], c: 1 },
+        { q: "What has keys but no locks?", a: ["Piano", "Door", "Map"], c: 0 },
+        { q: "What gets wetter as it dries?", a: ["Towel", "Cloud", "Sponge"], c: 0 },
+        { q: "What has a neck but no head?", a: ["Shirt", "Bottle", "Guitar"], c: 1 },
+        { q: "Smallest unit of digital data?", a: ["Bit", "Byte", "Pixel"], c: 0 },
         { q: "Python is a?", a: ["Programming Language", "Hardware"], c: 0 },
-        { q: "AI stands for?", a: ["Artificial Intelligence", "Auto Intel"], c: 0 },
-        { q: "Shortcut for Copy?", a: ["Ctrl+C", "Ctrl+V"], c: 0 },
-        { q: "Shortcut for Paste?", a: ["Ctrl+V", "Ctrl+P"], c: 0 },
-        { q: "Device for typing?", a: ["Mouse", "Keyboard"], c: 1 },
-        { q: "Owner of YouTube?", a: ["Google", "Microsoft"], c: 0 },
-        { q: "Smallest unit of data?", a: ["Bit", "Byte"], c: 0 },
-        { q: "CSS stands for?", a: ["Cascading Style Sheets", "Creative Style"], c: 0 },
-        { q: "Who founded Amazon?", a: ["Jeff Bezos", "Bill Gates"], c: 0 },
-        { q: "Which room has no doors?", a: ["Mushroom", "Store"], c: 0 },
-        { q: "What belongs to you but others use it?", a: ["Name", "Money"], c: 0 },
+        { q: "What belongs to you but others use it more?", a: ["Name", "Money", "Voice"], c: 0 },
         { q: "Which month has 28 days?", a: ["February", "All of them"], c: 1 },
+        { q: "Founder of Amazon?", a: ["Jeff Bezos", "Bill Gates"], c: 0 },
+        { q: "Riddle: Which room has no doors or windows?", a: ["Mushroom", "Store room"], c: 0 },
         { q: "GPS stands for?", a: ["Global Positioning System", "Global Post"], c: 0 },
-        { q: "USB stands for?", a: ["Universal Serial Bus", "User Bus"], c: 0 },
-        { q: "Apple CEO?", a: ["Tim Cook", "Steve Jobs"], c: 0 },
-        { q: "10 + 10 / 10?", a: ["11", "2"], c: 0 },
-        { q: "Which company made Windows?", a: ["Microsoft", "Intel"], c: 0 },
-        { q: "Bitcoin creator?", a: ["Satoshi Nakamoto", "Musk"], c: 0 },
-        { q: "Largest social network?", a: ["Facebook", "X"], c: 0 },
-        { q: "Wi-Fi full form?", a: ["Wireless Fidelity", "Wire Free"], c: 0 },
-        { q: "What has many teeth but cannot bite?", a: ["Comb", "Saw"], c: 0 },
-        { q: "Language of the web?", a: ["HTML", "C++"], c: 0 },
-        { q: "Color of a standard link?", a: ["Blue", "Red"], c: 0 },
-        { q: "Binary digits are?", a: ["0 and 1", "1 and 2"], c: 0 },
-        { q: "CPU stands for?", a: ["Central Processing Unit", "Core Unit"], c: 0 },
-        { q: "RAM stands for?", a: ["Random Access Memory", "Read Memory"], c: 0 },
-        { q: "Which is a browser?", a: ["Chrome", "Google"], c: 0 },
-        { q: "Is Linux an OS?", a: ["Yes", "No"], c: 0 },
-        { q: "Founder of Microsoft?", a: ["Bill Gates", "Steve Jobs"], c: 0 },
-        { q: "What can you catch but not throw?", a: ["Cold", "Ball"], c: 0 },
-        { q: "Starts with P, ends with E (letters)?", a: ["Envelope", "Paper"], c: 0 },
-        { q: "What has one eye but no sight?", a: ["Needle", "Bat"], c: 0 },
-        { q: "Which planet is Red?", a: ["Mars", "Venus"], c: 0 },
-        { q: "Smallest country?", a: ["Vatican City", "Monaco"], c: 0 },
-        { q: "First supercomputer name?", a: ["PARAM 8000", "ENIAC"], c: 0 },
+        { q: "What is the result of 10 + 10 / 10?", a: ["11", "2", "20"], c: 0 },
+        { q: "Who is the CEO of Tesla?", a: ["Elon Musk", "Tim Cook"], c: 0 },
+        { q: "Shortcut for Copy?", a: ["Ctrl+C", "Ctrl+V"], c: 0 },
+        { q: "HTML is used for?", a: ["Web Design", "Hardware"], c: 0 },
         { q: "Instagram launch year?", a: ["2010", "2012"], c: 0 },
-        { q: "Does water have a brain?", a: ["No", "Yes"], c: 0 },
-        { q: "Tesla CEO?", a: ["Elon Musk", "Jeff Bezos"], c: 0 }
+        { q: "Binary system digits are?", a: ["0 and 1", "1 and 2"], c: 0 },
+        { q: "RAM stands for?", a: ["Random Access Memory", "Read Access"], c: 0 },
+        { q: "CSS stands for?", a: ["Cascading Style Sheets", "Creative Style"], c: 0 },
+        { q: "USB stands for?", a: ["Universal Serial Bus", "User Bus"], c: 0 },
+        { q: "Which planet is known as Red Planet?", a: ["Mars", "Venus"], c: 0 },
+        { q: "First Search Engine?", a: ["Archie", "Google"], c: 0 },
+        { q: "Does a computer think?", a: ["No", "Yes"], c: 0 },
+        { q: "Who created Bitcoin?", a: ["Satoshi Nakamoto", "Musk"], c: 0 },
+        { q: "What can you catch but not throw?", a: ["Cold", "Ball"], c: 0 },
+        { q: "What has many teeth but cannot bite?", a: ["Comb", "Saw"], c: 0 },
+        { q: "What has one eye but can't see?", a: ["Needle", "Bat"], c: 0 },
+        { q: "Shortcut for Paste?", a: ["Ctrl+V", "Ctrl+P"], c: 0 },
+        { q: "Who is the CEO of Apple?", a: ["Tim Cook", "Steve Jobs"], c: 0 },
+        { q: "Smallest country in the world?", a: ["Vatican City", "Monaco"], c: 0 },
+        { q: "Wi-Fi stands for?", a: ["Wireless Fidelity", "Wire Free"], c: 0 },
+        { q: "Most popular search engine?", a: ["Google", "Bing"], c: 0 },
+        { q: "Riddle: What has hands but can't clap?", a: ["Clock", "Tree"], c: 0 },
+        { q: "First programmable computer?", a: ["Z1", "ENIAC"], c: 0 },
+        { q: "How many bits are in a byte?", a: ["8", "16"], c: 0 },
+        { q: "Is Linux an OS?", a: ["Yes", "No"], c: 0 },
+        { q: "Founder of Microsoft?", a: ["Bill Gates", "Mark Cuban"], c: 0 },
+        { q: "Owner of YouTube?", a: ["Google", "Meta"], c: 0 },
+        { q: "Riddle: What starts with P and ends with E?", a: ["Envelope", "Paper"], c: 0 },
+        { q: "GPU is for?", a: ["Graphics", "Sound"], c: 0 },
+        { q: "Current year (simulation)?", a: ["2026", "2025"], c: 0 },
+        { q: "Can robots dream?", a: ["No", "Yes"], c: 0 },
+        { q: "Is this the best IQ Hub?", a: ["Definitely", "Yes"], c: 0 }
     ];
 
     let quizSet = [], qIdx = 0, score = 0, timer;
 
-    // --- Switch Screens ---
     function setScreen(id) {
         document.querySelectorAll('.screen').forEach(s => s.classList.remove('active-screen'));
         document.getElementById(id).classList.add('active-screen');
@@ -183,58 +217,48 @@
     function startQuiz() {
         setScreen('quiz-screen');
         quizSet = questions.sort(() => 0.5 - Math.random()).slice(0, 10);
-        score = 0; qIdx = 0;
-        loadQuestion();
+        score = 0; qIdx = 0; loadQuestion();
     }
 
     function loadQuestion() {
-        if(qIdx >= 10) return showFinalResult("Quiz Score: " + score + "/10");
+        if(qIdx >= 10) return showResult("IQ Test Score: " + score + "/10");
         clearInterval(timer);
         let time = 15;
         document.getElementById('q-timer').innerText = time;
-        
         const qData = quizSet[qIdx];
         document.getElementById('q-text').innerText = (qIdx+1) + ". " + qData.q;
-        const box = document.getElementById('options-box');
-        box.innerHTML = '';
+        const box = document.getElementById('options-box'); box.innerHTML = '';
 
         qData.a.forEach((opt, i) => {
             const btn = document.createElement('button');
-            btn.className = 'opt-btn';
-            btn.innerText = opt;
+            btn.className = 'opt-btn'; btn.innerText = opt;
             btn.onclick = () => {
                 clearInterval(timer);
                 const btns = document.querySelectorAll('.opt-btn');
                 btns.forEach(b => b.style.pointerEvents = 'none');
                 if(i === qData.c) { btn.style.background = 'var(--success)'; score++; }
                 else { btn.style.background = 'var(--error)'; btns[qData.c].style.background = 'var(--success)'; }
-                setTimeout(() => { qIdx++; loadQuestion(); }, 1000);
+                setTimeout(() => { qIdx++; loadQuestion(); }, 1200);
             };
             box.appendChild(btn);
         });
 
         timer = setInterval(() => {
-            time--;
-            document.getElementById('q-timer').innerText = time;
+            time--; document.getElementById('q-timer').innerText = time;
             if(time <= 0) { qIdx++; loadQuestion(); }
         }, 1000);
     }
 
-    // --- GAME LOGIC (Logical Number Memory) ---
+    // --- LOGICAL GAME (Number Memory) ---
     let gameNum, gLevel = 1, gTimer;
 
-    function startGame() {
-        setScreen('game-screen');
-        gLevel = 1;
-        playGameLevel();
-    }
+    function startGame() { setScreen('game-screen'); gLevel = 1; playGameLevel(); }
 
     function playGameLevel() {
         document.getElementById('game-input-area').classList.add('hidden');
         document.getElementById('game-number').innerText = '';
-        document.getElementById('g-timer').innerText = "Memorize!";
+        document.getElementById('g-timer').innerText = "MEMORIZE";
         
-        // Generate number based on level
         gameNum = Math.floor(Math.pow(10, gLevel-1) + Math.random() * 9 * Math.pow(10, gLevel-1));
         
         setTimeout(() => {
@@ -245,45 +269,36 @@
                 document.getElementById('user-input').value = '';
                 document.getElementById('user-input').focus();
                 startGameTimer();
-            }, 2000 + (gLevel * 200)); // Time to see increases with level
-        }, 500);
+            }, 2000 + (gLevel * 200));
+        }, 800);
     }
 
     function startGameTimer() {
-        let time = 10;
+        let time = 8;
         document.getElementById('g-timer').innerText = time + "s";
         clearInterval(gTimer);
         gTimer = setInterval(() => {
-            time--;
-            document.getElementById('g-timer').innerText = time + "s";
-            if(time <= 0) { clearInterval(gTimer); gameOver(); }
+            time--; document.getElementById('g-timer').innerText = time + "s";
+            if(time <= 0) { clearInterval(gTimer); showResult("Memory Level Reached: " + gLevel); }
         }, 1000);
     }
 
     function checkGameAns() {
         clearInterval(gTimer);
-        const input = document.getElementById('user-input').value;
-        if(input == gameNum) {
-            gLevel++;
-            document.getElementById('g-msg').innerText = "Correct! Next Level...";
-            setTimeout(playGameLevel, 1000);
-        } else {
-            gameOver();
-        }
+        if(document.getElementById('user-input').value == gameNum) {
+            gLevel++; document.getElementById('g-msg').innerText = "Correct! Elevating...";
+            setTimeout(() => { document.getElementById('g-msg').innerText = "Memorize the Sequence!"; playGameLevel(); }, 1000);
+        } else { showResult("Memory Level Reached: " + gLevel); }
     }
 
-    function gameOver() {
-        showFinalResult("Game Level Reached: " + gLevel);
-    }
-
-    // --- FINAL RESULTS ---
-    function showFinalResult(msg) {
+    // --- RESULT HANDLER ---
+    function showResult(msg) {
         setScreen('result-screen');
         document.getElementById('res-msg').innerText = msg;
-        document.getElementById('final-score').innerText = (msg.includes("Score")) ? score : gLevel;
+        document.getElementById('final-score').innerText = msg.includes("Score") ? score : gLevel;
         
-        let shareText = encodeURIComponent("I scored " + (msg.includes("Score") ? score+"/10" : "Level "+gLevel) + " on Rehman Tech Hub! Beat me if you can: " + window.location.href);
-        document.getElementById('wa-share').href = "https://api.whatsapp.com/send?text=" + shareText;
+        let shareLink = encodeURIComponent("I scored " + (msg.includes("Score") ? score+"/10" : "Level "+gLevel) + " on Rehman Tech Hub IQ Arena! Challenge me: " + window.location.href);
+        document.getElementById('wa-share').href = "https://api.whatsapp.com/send?text=" + shareLink;
         document.getElementById('fb-share').href = "https://www.facebook.com/sharer/sharer.php?u=" + window.location.href;
     }
 
@@ -291,6 +306,6 @@
     function closeModal() { document.querySelectorAll('.modal').forEach(m => m.style.display = 'none'); }
 </script>
 
-<footer>&copy; 2026 Rehman Tech Hub. Designed for Growth.</footer>
+<footer>Designed for Elite Minds &copy; 2026 Rehman Tech Hub.</footer>
 </body>
 </html>
